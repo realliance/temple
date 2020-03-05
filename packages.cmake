@@ -9,18 +9,25 @@ FetchContent_Declare(
 FetchContent_Declare(
   box2d
   GIT_REPOSITORY https://github.com/erincatto/box2d.git
-  GIT_TAG        v2.3.1
+  GIT_TAG        c947761815c00fdbc646b7bb1c1b32fd5830eb11
 )
 
 FetchContent_Declare(
   toml
-  GIT_REPOSITORY https://github.com/ToruNiina/toml11
-  GIT_TAG        v3.3.1
+  GIT_REPOSITORY https://github.com/ToruNiina/toml11.git
+  GIT_TAG        a20a2c0b80be95190635c20f9e52394637a7e42e
 )
 
-set(SFML_BUILD_NETWORK OFF)
+option(SFML_BUILD_NETWORK OFF)
 FetchContent_MakeAvailable(sfml)
+
+option (BOX2D_BUILD_UNIT_TESTS OFF)
+option (BOX2D_BUILD_DOCS OFF)
+option (BOX2D_BUILD_TESTBED OFF)
 FetchContent_MakeAvailable(box2d)
 
-set(toml11_BUILD_TEST OFF)
-FetchContent_MakeAvailable(toml)
+FetchContent_GetProperties(toml)
+if(NOT toml_POPULATED)
+  FetchContent_Populate(toml)
+  include_directories(${toml_SOURCE_DIR})
+endif()

@@ -16,6 +16,8 @@ add_executable(temple "")
 add_subdirectory(${temple_SOURCE_DIR}/src)
 add_subdirectory(${temple_SOURCE_DIR}/include)
 
-target_include_directories(temple PRIVATE ${LIBRARY_INCLUDES})
+target_link_libraries(temple LINK_INTERFACE_LIBRARIES sfml)
+target_link_libraries(temple box2d)
+
 target_compile_features(temple PUBLIC cxx_std_20)
 set_target_properties(temple PROPERTIES CXX_EXTENSIONS OFF)
