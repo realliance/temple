@@ -18,7 +18,6 @@ FetchContent_Declare(
   GIT_TAG        a20a2c0b80be95190635c20f9e52394637a7e42e
 )
 
-option(SFML_BUILD_NETWORK OFF)
 FetchContent_MakeAvailable(sfml)
 
 option (BOX2D_BUILD_UNIT_TESTS OFF)

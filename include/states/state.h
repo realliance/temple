@@ -1,7 +1,10 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 class State {
   public:
-    void OnDraw();
+    void Init();
+    void OnDraw(sf::RenderWindow& window);
     void OnUpdate();
 };

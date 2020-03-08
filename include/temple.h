@@ -1,6 +1,7 @@
 #pragma once
 #include "states/state.h"
 #include "entities/entity.h"
+#include "palettes.h"
 
 #include <stack>
 #include <vector>
@@ -9,12 +10,15 @@
 
 class Temple {
   public:
+    Temple();
+    ~Temple();
     void Init();
-    static Temple& GetInstance();
     void PushState(State state);
     State& GetCurrentState();
-    State PopState();
+    void PopState();
   private:
+    void LoadPalettes(std::string path);
+    std::vector<LevelPalette> levelPalettes;
     std::stack<State, std::vector<State>> stateStack;
-    b2Vec2 gravity;
+    b2World world = b2World(b2Vec2(0.0f, -10.0f));
 };
